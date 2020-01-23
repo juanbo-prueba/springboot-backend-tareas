@@ -1,0 +1,122 @@
+2020-01-23 15:17:00.421 DEBUG DESKTOP-9SLK6M4 --- [kground-preinit] .h.v.m.ResourceBundleMessageInterpolator : Loaded expression factory via original TCCL
+2020-01-23 15:17:00.455 DEBUG DESKTOP-9SLK6M4 --- [kground-preinit] o.h.v.i.e.ValidatorFactoryImpl           : HV000234: Using org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator as ValidatorFactory-scoped message interpolator.
+2020-01-23 15:17:00.455 DEBUG DESKTOP-9SLK6M4 --- [kground-preinit] o.h.v.i.e.ValidatorFactoryImpl           : HV000234: Using org.hibernate.validator.internal.engine.resolver.TraverseAllTraversableResolver as ValidatorFactory-scoped traversable resolver.
+2020-01-23 15:17:00.456 DEBUG DESKTOP-9SLK6M4 --- [kground-preinit] o.h.v.i.e.ValidatorFactoryImpl           : HV000234: Using org.hibernate.validator.internal.util.ExecutableParameterNameProvider as ValidatorFactory-scoped parameter name provider.
+2020-01-23 15:17:00.456 DEBUG DESKTOP-9SLK6M4 --- [kground-preinit] o.h.v.i.e.ValidatorFactoryImpl           : HV000234: Using org.hibernate.validator.internal.engine.DefaultClockProvider as ValidatorFactory-scoped clock provider.
+2020-01-23 15:17:00.457 DEBUG DESKTOP-9SLK6M4 --- [kground-preinit] o.h.v.i.e.ValidatorFactoryImpl           : HV000234: Using org.hibernate.validator.internal.engine.scripting.DefaultScriptEvaluatorFactory as ValidatorFactory-scoped script evaluator factory.
+2020-01-23 15:17:00.520  INFO DESKTOP-9SLK6M4 --- [           main] s.z.t.SpringbootBackendTareasApplication : Starting SpringbootBackendTareasApplication on DESKTOP-9SLK6M4 with PID 6932 (F:\PROYECTOS_SPRING_2\springboot-backend-tareas\target\classes started by saimon in F:\PROYECTOS_SPRING_2\springboot-backend-tareas)
+2020-01-23 15:17:00.524 DEBUG DESKTOP-9SLK6M4 --- [           main] s.z.t.SpringbootBackendTareasApplication : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-01-23 15:17:00.525  INFO DESKTOP-9SLK6M4 --- [           main] s.z.t.SpringbootBackendTareasApplication : No active profile set, falling back to default profiles: default
+2020-01-23 15:17:01.555 DEBUG DESKTOP-9SLK6M4 --- [           main] o.m.s.b.a.MybatisAutoConfiguration       : Searching for mappers annotated with @Mapper
+2020-01-23 15:17:01.567 DEBUG DESKTOP-9SLK6M4 --- [           main] o.m.s.b.a.MybatisAutoConfiguration       : Using auto-configuration base package 'com.springboot.zeus.tareas'
+2020-01-23 15:17:01.572 DEBUG DESKTOP-9SLK6M4 --- [           main] o.m.s.m.ClassPathMapperScanner           : Identified candidate component class: file [F:\PROYECTOS_SPRING_2\springboot-backend-tareas\target\classes\com\springboot\zeus\tareas\component\mapper\LogMapper.class]
+2020-01-23 15:17:01.573 DEBUG DESKTOP-9SLK6M4 --- [           main] o.m.s.m.ClassPathMapperScanner           : Identified candidate component class: file [F:\PROYECTOS_SPRING_2\springboot-backend-tareas\target\classes\com\springboot\zeus\tareas\login\repository\AdmUsuarioRepository.class]
+2020-01-23 15:17:01.575 DEBUG DESKTOP-9SLK6M4 --- [           main] o.m.s.m.ClassPathMapperScanner           : Creating MapperFactoryBean with name 'logMapper' and 'com.springboot.zeus.tareas.component.mapper.LogMapper' mapperInterface
+2020-01-23 15:17:01.575 DEBUG DESKTOP-9SLK6M4 --- [           main] o.m.s.m.ClassPathMapperScanner           : Enabling autowire by type for MapperFactoryBean with name 'logMapper'.
+2020-01-23 15:17:01.575 DEBUG DESKTOP-9SLK6M4 --- [           main] o.m.s.m.ClassPathMapperScanner           : Creating MapperFactoryBean with name 'admUsuarioRepository' and 'com.springboot.zeus.tareas.login.repository.AdmUsuarioRepository' mapperInterface
+2020-01-23 15:17:01.575 DEBUG DESKTOP-9SLK6M4 --- [           main] o.m.s.m.ClassPathMapperScanner           : Enabling autowire by type for MapperFactoryBean with name 'admUsuarioRepository'.
+2020-01-23 15:17:01.703 DEBUG DESKTOP-9SLK6M4 --- [           main] o.m.s.m.ClassPathMapperScanner           : Ignored because not a concrete top-level class: file [F:\PROYECTOS_SPRING_2\springboot-backend-tareas\target\classes\com\springboot\zeus\tareas\component\repository\LogRepository.class]
+2020-01-23 15:17:01.705  WARN DESKTOP-9SLK6M4 --- [           main] o.m.s.m.ClassPathMapperScanner           : No MyBatis mapper was found in '[com.springboot.zeus.tareas]' package. Please check your configuration.
+2020-01-23 15:17:01.878 DEBUG DESKTOP-9SLK6M4 --- [           main] o.a.i.l.LogFactory                       : Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2020-01-23 15:17:02.136  INFO DESKTOP-9SLK6M4 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-5007"]
+2020-01-23 15:17:02.136  INFO DESKTOP-9SLK6M4 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2020-01-23 15:17:02.137  INFO DESKTOP-9SLK6M4 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-01-23 15:17:02.207  INFO DESKTOP-9SLK6M4 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-01-23 15:17:02.308 DEBUG DESKTOP-9SLK6M4 --- [           main] c.z.h.HikariConfig                       : Driver class com.microsoft.sqlserver.jdbc.SQLServerDriver found in Thread context class loader TomcatEmbeddedWebappClassLoader
+  context: ROOT
+  delegate: true
+----------> Parent Classloader:
+sun.misc.Launcher$AppClassLoader@14dad5dc
+
+2020-01-23 15:17:02.432 DEBUG DESKTOP-9SLK6M4 --- [           main] o.m.s.SqlSessionFactoryBean              : Property 'configuration' or 'configLocation' not specified, using default MyBatis Configuration
+2020-01-23 15:17:02.551 DEBUG DESKTOP-9SLK6M4 --- [           main] o.m.s.SqlSessionFactoryBean              : Parsed mapper file: 'file [F:\PROYECTOS_SPRING_2\springboot-backend-tareas\target\classes\mappers\AdmUsuarioMapper.xml]'
+2020-01-23 15:17:02.558 DEBUG DESKTOP-9SLK6M4 --- [           main] o.m.s.SqlSessionFactoryBean              : Parsed mapper file: 'file [F:\PROYECTOS_SPRING_2\springboot-backend-tareas\target\classes\mappers\LogMapper.xml]'
+2020-01-23 15:17:02.729 DEBUG DESKTOP-9SLK6M4 --- [           main] c.s.z.t.l.s.JwtAuthenticationFilter      : Filter 'jwtAuthenticationFilter' configured for use
+2020-01-23 15:17:02.961 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.e.r.TraversableResolvers         : Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2020-01-23 15:17:02.961 DEBUG DESKTOP-9SLK6M4 --- [           main] .h.v.m.ResourceBundleMessageInterpolator : Loaded expression factory via original TCCL
+2020-01-23 15:17:02.963 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.e.r.TraversableResolvers         : Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2020-01-23 15:17:02.964 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.e.ConfigurationImpl              : Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2020-01-23 15:17:02.964 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.e.ConfigurationImpl              : Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2020-01-23 15:17:02.965 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.e.ConfigurationImpl              : Setting custom ParameterNameProvider of type org.springframework.validation.beanvalidation.LocalValidatorFactoryBean$1
+2020-01-23 15:17:02.965 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.x.c.ValidationXmlParser          : Trying to load META-INF/validation.xml for XML based Validator configuration.
+2020-01-23 15:17:02.966 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.x.c.ResourceLoaderHelper         : Trying to load META-INF/validation.xml via user class loader
+2020-01-23 15:17:02.966 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.x.c.ResourceLoaderHelper         : Trying to load META-INF/validation.xml via TCCL
+2020-01-23 15:17:02.966 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.x.c.ResourceLoaderHelper         : Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2020-01-23 15:17:02.966 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.x.c.ValidationXmlParser          : No META-INF/validation.xml found. Using annotation based configuration only.
+2020-01-23 15:17:02.969 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.e.ValidatorFactoryImpl           : HV000234: Using org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator as ValidatorFactory-scoped message interpolator.
+2020-01-23 15:17:02.970 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.e.ValidatorFactoryImpl           : HV000234: Using org.hibernate.validator.internal.engine.resolver.TraverseAllTraversableResolver as ValidatorFactory-scoped traversable resolver.
+2020-01-23 15:17:02.970 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.e.ValidatorFactoryImpl           : HV000234: Using org.hibernate.validator.internal.util.ExecutableParameterNameProvider as ValidatorFactory-scoped parameter name provider.
+2020-01-23 15:17:02.970 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.e.ValidatorFactoryImpl           : HV000234: Using org.hibernate.validator.internal.engine.DefaultClockProvider as ValidatorFactory-scoped clock provider.
+2020-01-23 15:17:02.970 DEBUG DESKTOP-9SLK6M4 --- [           main] o.h.v.i.e.ValidatorFactoryImpl           : HV000234: Using org.hibernate.validator.internal.engine.scripting.DefaultScriptEvaluatorFactory as ValidatorFactory-scoped script evaluator factory.
+2020-01-23 15:17:03.032 DEBUG DESKTOP-9SLK6M4 --- [           main] o.m.s.b.a.MybatisAutoConfiguration       : No org.mybatis.spring.mapper.MapperFactoryBean found.
+2020-01-23 15:17:03.135  INFO DESKTOP-9SLK6M4 --- [           main] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-5007"]
+2020-01-23 15:17:03.155  INFO DESKTOP-9SLK6M4 --- [           main] s.z.t.SpringbootBackendTareasApplication : Started SpringbootBackendTareasApplication in 3.138 seconds (JVM running for 5.225)
+2020-01-23 15:17:08.256  INFO DESKTOP-9SLK6M4 --- [nio-5007-exec-2] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-01-23 15:17:08.889 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : HikariPool-1 - configuration:
+2020-01-23 15:17:08.893 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : allowPoolSuspension.............false
+2020-01-23 15:17:08.893 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : autoCommit......................true
+2020-01-23 15:17:08.894 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : catalog.........................none
+2020-01-23 15:17:08.894 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : connectionInitSql...............none
+2020-01-23 15:17:08.895 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : connectionTestQuery.............none
+2020-01-23 15:17:08.895 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : connectionTimeout...............30000
+2020-01-23 15:17:08.896 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : dataSource......................none
+2020-01-23 15:17:08.896 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : dataSourceClassName.............none
+2020-01-23 15:17:08.896 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : dataSourceJNDI..................none
+2020-01-23 15:17:08.896 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : dataSourceProperties............{password=<masked>}
+2020-01-23 15:17:08.897 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : driverClassName................."com.microsoft.sqlserver.jdbc.SQLServerDriver"
+2020-01-23 15:17:08.897 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : healthCheckProperties...........{}
+2020-01-23 15:17:08.898 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : healthCheckRegistry.............none
+2020-01-23 15:17:08.898 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : idleTimeout.....................600000
+2020-01-23 15:17:08.898 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : initializationFailTimeout.......1
+2020-01-23 15:17:08.899 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : isolateInternalQueries..........false
+2020-01-23 15:17:08.899 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : jdbcUrl.........................jdbc:sqlserver://localhost:1433;database=SARTORIUS20190621
+2020-01-23 15:17:08.899 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : leakDetectionThreshold..........0
+2020-01-23 15:17:08.899 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : maxLifetime.....................1800000
+2020-01-23 15:17:08.900 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : maximumPoolSize.................10
+2020-01-23 15:17:08.900 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : metricRegistry..................none
+2020-01-23 15:17:08.900 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : metricsTrackerFactory...........none
+2020-01-23 15:17:08.900 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : minimumIdle.....................10
+2020-01-23 15:17:08.900 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : password........................<masked>
+2020-01-23 15:17:08.901 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : poolName........................"HikariPool-1"
+2020-01-23 15:17:08.901 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : readOnly........................false
+2020-01-23 15:17:08.901 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : registerMbeans..................false
+2020-01-23 15:17:08.901 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : scheduledExecutor...............none
+2020-01-23 15:17:08.902 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : schema..........................none
+2020-01-23 15:17:08.902 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : threadFactory...................internal
+2020-01-23 15:17:08.902 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : transactionIsolation............default
+2020-01-23 15:17:08.902 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : username........................"sa"
+2020-01-23 15:17:08.902 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariConfig                       : validationTimeout...............5000
+2020-01-23 15:17:08.903  INFO DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2020-01-23 15:17:09.192 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: 37b97a04-6599-4767-8a20-84abcc7f1aa4
+2020-01-23 15:17:09.194  INFO DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2020-01-23 15:17:09.208 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] o.m.s.SqlSessionUtils                    : Creating a new SqlSession
+2020-01-23 15:17:09.211 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] o.m.s.SqlSessionUtils                    : Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@47b8cad4]
+2020-01-23 15:17:09.219 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] o.m.s.t.SpringManagedTransaction         : JDBC Connection [HikariProxyConnection@281325718 wrapping ConnectionID:1 ClientConnectionId: 37b97a04-6599-4767-8a20-84abcc7f1aa4] will be managed by Spring
+2020-01-23 15:17:09.223 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.s.z.t.l.r.A.buscarUsuarioPorNombre     : ==>  Preparing: select u.COD_PERSONAL, p.COD_AREA_EMPRESA, p.CODIGO_CARGO, p.NOMBRES_PERSONAL + ' ' + p.AP_PATERNO_PERSONAL as name, u.NOMBRE_USUARIO, p.CORREO_EMPRESA, u.CONTRASENA_USUARIO from USUARIOS_MODULOS u inner join personal p on u.COD_PERSONAL = p.COD_PERSONAL where u.NOMBRE_USUARIO = ? and u.COD_MODULO = 4 and p.COD_ESTADO_PERSONA = 1 
+2020-01-23 15:17:09.248 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.s.z.t.l.r.A.buscarUsuarioPorNombre     : ==> Parameters: dguachalla(String)
+2020-01-23 15:17:09.268 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.s.z.t.l.r.A.buscarUsuarioPorNombre     : <==      Total: 1
+2020-01-23 15:17:09.278 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] o.m.s.SqlSessionUtils                    : Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@47b8cad4]
+2020-01-23 15:17:09.279 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] o.m.s.SqlSessionUtils                    : Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@47b8cad4]
+2020-01-23 15:17:09.279 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] o.m.s.SqlSessionUtils                    : Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@47b8cad4]
+2020-01-23 15:17:09.279 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] o.m.s.SqlSessionUtils                    : Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@47b8cad4]
+2020-01-23 15:17:09.296 DEBUG DESKTOP-9SLK6M4 --- [l-1 housekeeper] c.z.h.p.HikariPool                       : HikariPool-1 - Pool stats (total=1, active=0, idle=1, waiting=0)
+2020-01-23 15:17:09.311 DEBUG DESKTOP-9SLK6M4 --- [onnection adder] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: d9a0fba3-3b4e-4326-ab20-4acd0c569a2d
+2020-01-23 15:17:09.322 DEBUG DESKTOP-9SLK6M4 --- [onnection adder] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 43b3fbea-5aab-4a2a-be7b-03b868f129ff
+2020-01-23 15:17:09.331 DEBUG DESKTOP-9SLK6M4 --- [onnection adder] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection ConnectionID:4 ClientConnectionId: 165fafea-7ca2-46cc-be26-87ec109b64cc
+2020-01-23 15:17:09.341 DEBUG DESKTOP-9SLK6M4 --- [onnection adder] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection ConnectionID:5 ClientConnectionId: 392d2bdc-f3e2-42e6-b914-59f0ecc40075
+2020-01-23 15:17:09.350 DEBUG DESKTOP-9SLK6M4 --- [onnection adder] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection ConnectionID:6 ClientConnectionId: a68815f1-a4f9-4913-8de5-1942b81dd993
+2020-01-23 15:17:09.359 DEBUG DESKTOP-9SLK6M4 --- [onnection adder] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection ConnectionID:7 ClientConnectionId: d7150d7d-55fc-4c15-a883-04f96a4bf985
+2020-01-23 15:17:09.368 DEBUG DESKTOP-9SLK6M4 --- [onnection adder] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection ConnectionID:8 ClientConnectionId: 1d2eb69b-e778-49d6-a216-b86dbdcb0363
+2020-01-23 15:17:09.376 DEBUG DESKTOP-9SLK6M4 --- [onnection adder] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection ConnectionID:9 ClientConnectionId: 1c6c1fa7-26db-4953-896e-be5f2c70be34
+2020-01-23 15:17:09.385 DEBUG DESKTOP-9SLK6M4 --- [onnection adder] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection ConnectionID:10 ClientConnectionId: 99f6cb6f-1e7c-43fb-9f28-5059d686af78
+2020-01-23 15:17:09.386 DEBUG DESKTOP-9SLK6M4 --- [onnection adder] c.z.h.p.HikariPool                       : HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
+2020-01-23 15:17:09.481 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] o.m.s.SqlSessionUtils                    : Creating a new SqlSession
+2020-01-23 15:17:09.481 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] o.m.s.SqlSessionUtils                    : SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4a924542] was not registered for synchronization because synchronization is not active
+2020-01-23 15:17:09.481 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] o.m.s.t.SpringManagedTransaction         : JDBC Connection [HikariProxyConnection@480230242 wrapping ConnectionID:1 ClientConnectionId: 37b97a04-6599-4767-8a20-84abcc7f1aa4] will not be managed by Spring
+2020-01-23 15:17:09.482 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.s.z.t.c.m.L.guardar                    : ==>  Preparing: INSERT INTO LOG_APOLO(FECHA_REGISTRO, DETALLE, USUARIO, URL, TIEMPO_RESPUESTA, COD_ID_USUARIO) VALUES ( ?, ?, ?, ?, ?, ? ) 
+2020-01-23 15:17:09.488 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.s.z.t.c.m.L.guardar                    : ==> Parameters: 2020-01-23 15:17:09.476(Timestamp), (String), dguachalla(String), http://localhost:5007/login/logearse(String), 1193(String), 1430(Long)
+2020-01-23 15:17:09.496 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.s.z.t.c.m.L.guardar                    : <==    Updates: 1
+2020-01-23 15:17:09.496 DEBUG DESKTOP-9SLK6M4 --- [nio-5007-exec-2] o.m.s.SqlSessionUtils                    : Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4a924542]
+2020-01-23 15:17:09.496  INFO DESKTOP-9SLK6M4 --- [nio-5007-exec-2] c.s.z.t.c.RequestTimeInterceptor         : --REQUEST URL: 'http://localhost:5007/login/logearse' -- TOTAL TIEMPO: '1213'ms
+2020-01-23 15:17:39.298 DEBUG DESKTOP-9SLK6M4 --- [l-1 housekeeper] c.z.h.p.HikariPool                       : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2020-01-23 15:18:09.299 DEBUG DESKTOP-9SLK6M4 --- [l-1 housekeeper] c.z.h.p.HikariPool                       : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
+        </Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <!-- Rolling File Appender -->
+        <RollingFile name="FileAppender" fileName="logs/log4j2-demo.log"
+                     filePattern="logs/log4j2-demo-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout>
+                <Pattern>${LOG_PATTERN}</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
+        </Root>
+
+        <!-- Spring -->
+        <logger name="org.springframework" level="ERROR" />
+        <!-- mybatis loggers -->
+        <logger name="com.ibatis" level="INFO" />
+
+
+      <!--  <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG" />
+        <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" />
+        <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" />
+        &lt;!&ndash; sql loggers &ndash;&gt;
+        <logger name="java.sql.Connection" level="DEBUG"  additivity="true"/>
+        <logger name="java.sql.Statement" level="DEBUG" additivity="true" />
+        <logger name="java.sql.PreparedStatement" level="=debug,stdout"  additivity="true"/>
+        <logger name="java.sql.ResultSet" level="DEBUG"  additivity="true"/>-->
+    </Loggers>
+
+
+</Configuration>
