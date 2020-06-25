@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.zeus.tareas.cumplimientoPresupuestoFuncionario.mapper.CumplimientoPresupuestoFuncionarioMapper">
+    <insert id="generarVentasDeSeguimientoPresupuesto">
+        set dateformat ymd;
+        insert into PRESUPUESTO_PRODUCTO_VENTAS
+        select #{codPresupuesto}, s.COD_AREA_EMPRESA, s.COD_CLIENTE, 0,
+        p.cod_presentacion,
+        sd.cantidad_total,
+        sd.cantidad_unitariatotal,
+        (CASE sd.COD_OFERTA
+        When 0 Then isnull(sum(((isnull(sd.cantidad, 0) +(isnull(
+        sd.cantidad_unitaria, 0) / p.cantidad_presentacion)) * sd.precio_lista
+        *((100 - sd.porcentaje_aplicadoprecio) / 100) *((100 - isnull(
+        s.PORCENTAJE_DESCUENTO_PREFERENCIAL, 0)) / 100) *((100 -
+        s.porcentaje_descuento) / 100) *((100 - s.DESCUENTO_FIDELIDAD) / 100)
+        *((100 -(s.DESCUENTO_CONTADO)) / 100) *((100 -
+        s.DESCUENTO_PREFERENCIAL) / 100) -(isnull(PART_CHEQUE, 0) * isnull(
+        sd.MONTO_CHEQUE, 0)))), 0)
+        ELSE isnull(sum(((isnull(sd.cantidad, 0) +(isnull(sd.cantidad_unitaria
+        , 0) / p.cantidad_presentacion)) * sd.precio_lista *((100 -
+        sd.porcentaje_aplicadoprecio) / 100) *((100 - s.DESCUENTO_FIDELIDAD) /
+        100) *((100 -(s.DESCUENTO_CONTADO)) / 100) *((100 -
+        s.DESCUENTO_PREFERENCIAL) / 100) -(isnull(PART_CHEQUE, 0) * isnull(
+        sd.MONTO_CHEQUE, 0)))), 0)
+        END) as monto,
+        s.fecha_salidaventa, sd.COD_SALIDAVENTAS,
+        isnull ( (
+        (isnull(sd.cantidad, 0) +(isnull( sd.cantidad_unitaria, 0) / p.cantidad_presentacion)) * sd.precio_lista /
+        (select sum((isnull(sdv.cantidad, 0) +(isnull( sdv.cantidad_unitaria, 0) / ppp.cantidad_presentacion)) * sdv.precio_lista)
+        from SALIDAS_DETALLEVENTAS sdv inner join presentaciones_producto ppp
+        on sdv.cod_presentacion = ppp.cod_presentacion
+        where sdv.COD_SALIDAVENTAS = sd.COD_SALIDAVENTAS
+        and sdv.COD_AREA_EMPRESA = s.COD_AREA_EMPRESA)
+        ) * s.DESCUENTO_FIDELIDAD2, 0) montoFidelidad2
+        from PRESENTACIONES_PRODUCTO p,
+        SALIDAS_VENTAS s,
+        SALIDAS_DETALLEVENTAS sd
+        where s.cod_salidaventa = sd.cod_salidaventas and
+        sd.cod_presentacion = p.cod_presentacion and
+        S.COD_AREA_EMPRESA = SD.COD_AREA_EMPRESA AND
+        s.fecha_salidaventa BETWEEN #{fechaInicio} and
+        #{fechaFin} and
+        s.cod_estado_salidaventa != 2 and
+        s.COD_TIPOSALIDAVENTAS = 3
+        and s.COD_AREA_EMPRESA = #{codAreaEmpresa}
+        -- and s.COD_SALIDAVENTA = 1037511
+        group by s.COD_AREA_EMPRESA, s.COD_CLIENTE,
+        p.cod_presentacion,
+        sd.cantidad_total,
+        sd.cantidad_unitariatotal,
+        sd.cod_oferta,
+        s.fecha_salidaventa, sd.COD_SALIDAVENTAS,
+        sd.CANTIDAD, sd.CANTIDAD_UNITARIA, p.cantidad_presentacion, sd.PRECIO_LISTA, s.DESCUENTO_FIDELIDAD2
+    </insert>
+
+    <update id="actualizaPersonalClienteEnVentasSeguimiento">
+        update p set COD_PERSONAL = c.COD_PERSONAL
+        from PRESUPUESTO_PRODUCTO_VENTAS p inner join CLIENTES_LINEASVENTA_VERSIONES c
+        on p.COD_CLIENTE = c.COD_CLIENTE
+        inner join PRESENTACIONES_PRODUCTO pp
+        on pp.cod_presentacion = p.COD_PRESENTACION
+        inner join LINEAS_VENTA_MKT lv
+        on pp.COD_LINEAMKT = lv.COD_LINEAMKT
+        and lv.COD_LINEAVENTA = c.COD_LINEAVENTA
+        inner join PRESUPUESTO_PERSONAL prep
+        on p.COD_PRESUPUESTO = prep.COD_PRESUPUESTO
+        and prep.COD_GESTION = c.COD_GESTION
+        and prep.COD_MES = c.COD_MES
+        where p.COD_PRESUPUESTO = #{codPresupuesto}
+    </update>
+
+    <delete id="eliminarVentasDeSeguimientoPresupuesto">
+        delete from PRESUPUESTO_PRODUCTO_VENTAS
+        where COD_PRESUPUESTO = #{codPresupuesto}
+        and COD_AREA_EMPRESA = #{codAreaEmpresa}
+    </delete>
+
+    <select id="obtenerCodigoPresupuestoFuncionarioActual" resultType="java.lang.Integer">
+        select p.COD_PRESUPUESTO
+        from PRESUPUESTO_PERSONAL p
+        where p.ESTADO_REGISTRO = 1
+    </select>
+
+    <select id="obtenerFechaInicioFechaFinDePresupuestoActual"
+            resultType="com.springboot.zeus.tareas.cumplimientoPresupuestoFuncionario.model.FechaInicioFin">
+            select pd.FECHA_INICIO as fechaInicio, pd.FECHA_FINAL as fechaFin
+            from PRESUPUESTO_PERSONAL pp inner join PERIODOS_VENTAS pv
+            on pp.COD_GESTION = pv.COD_GESTION
+            inner join PERIODOS_DETALLEMESES pd
+            on pv.COD_PERIODO = pd.COD_PERIODO
+            and pp.COD_MES = pd.COD_MESES
+            where pp.COD_PRESUPUESTO = #{codPresupuesto}
+    </select>
+
+    <select id="obtenerAreasEmpresaDeVentas"
+            resultType="java.lang.Integer">
+            select a.COD_AREA_EMPRESA
+            from AGENCIAS_VENTA a
+            where a.COD_AREA_EMPRESA not in (1, 52)
+    </select>
+
+</mapper>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.zeus.tareas.seriesVentas.mapper.SeriesTiempoMapper">
+    <insert id="adicionarFechasMaestro">
+        INSERT INTO SERIES_FECHAS_MAESTRO
+        VALUES(#{codSerieFecha}, #{fechaInicio ,jdbcType=DATE}, #{fechaFin,jdbcType=DATE})
+    </insert>
+
+    <insert id="generaAdicionaVentasPorProductosClienteDelMes">
+       set dateformat ymd;
+        insert into SERIES_VENTAS_CLIENTE_PRODUCTO
+        select vh.COD_AREA_EMPRESA, vh.COD_CLIENTE, vh.COD_PRESENTACION, #{fechaInicio, jdbcType=DATE},
+               SUM(vh.MONTO_VENTA) MONTO_VENTA,
+               SUM(vh.CANTIDAD_VENTA_TOTAL) CANTIDAD_VENTA_TOTAL
+        from SERIES_VENTAS_HECHOS vh
+        where vh.COD_CLIENTE = #{codCliente}
+          and vh.FECHA_VENTA BETWEEN #{fechaInicio} and  #{fechaFin}
+        group by vh.COD_AREA_EMPRESA, vh.COD_CLIENTE, vh.COD_PRESENTACION
+    </insert>
+
+    <insert id="insertaVentaProductoClientePorMes">
+        insert into SERIES_VENTAS_CLIENTE_PRODUCTO(COD_AREA_EMPRESA, COD_CLIENTE, COD_PRESENTACION, MES, MONTO_VENTA, CANTIDAD_VENTA_TOTAL)
+        VALUES(#{codAreaEmpresa}, #{codCliente}, #{codPresentacion}, #{fechaInicio, jdbcType=DATE}, #{montoVenta}, #{cantidadVenta})
+    </insert>
+
+    <insert id="insertarCobranzaDeMesDeCliente">
+        insert into SERIES_COBRANZAS_CLIENTE( COD_AREA_EMPRESA, COD_CLIENTE, MES, MONTO )
+        VALUES(#{codAreaEmpresa}, #{codCliente}, #{fechaInicio}, #{montoCobranza})
+    </insert>
+    <insert id="insertarDescuentoFidelidadDeMesDeCliente">
+        insert into SERIES_DESCUENTO_FIDELIDAD_CLIENTE(COD_AREA_EMPRESA, COD_CLIENTE, MES, MONTO )
+        VALUES( #{codAreaEmpresa}, #{codCliente}, #{fechaInicio}, #{montoDescuentoFidelidad})
+    </insert>
+
+    <delete id="eliminarFechasMaestro">
+        DELETE FROM SERIES_FECHAS_MAESTRO;
+    </delete>
+
+    <delete id="eliminaVentasPorProductosClienteDelMes">
+        delete from SERIES_VENTAS_CLIENTE_PRODUCTO where COD_CLIENTE = #{codCliente}
+    </delete>
+    <delete id="eliminaSerieCobranzaCliente">
+        delete from SERIES_COBRANZAS_CLIENTE where COD_CLIENTE = #{codCliente}
+    </delete>
+    <delete id="eliminaSerieDescuentoFidelidadCliente">
+        delete from SERIES_DESCUENTO_FIDELIDAD_CLIENTE where COD_CLIENTE = #{codCliente}
+    </delete>
+
+    <select id="obtieneFechaInicioFechaFinDeVentaDeCliente" resultType="com.springboot.zeus.tareas.seriesVentas.model.FechaSerie">
+        set dateformat ymd;
+        select fechaInicio.FECHA_INICIO as fechaInicio, fechaFin.FECHA_FIN as fechaFin
+        from (
+        SELECT MIN(s.FECHA_SALIDAVENTA) FECHA_MINIMA, MAX(s.FECHA_SALIDAVENTA) FECHA_MAXIMA
+        from SALIDAS_VENTAS s
+        where s.cod_estado_salidaventa != 2
+        and s.COD_TIPOSALIDAVENTAS = 3
+        and s.COD_AREA_EMPRESA = 46
+        and s.COD_CLIENTE = #{codCliente}
+        and s.FECHA_SALIDAVENTA >= '2018-09-30 23:59:59'
+        ) fechaCliente
+        LEFT JOIN (
+        select sf.COD_SERIE_FECHA, sf.FECHA_INICIO, sf.FECHA_FIN
+        from SERIES_FECHAS_MAESTRO sf
+        ) fechaInicio
+        on convert(varchar, fechaCliente.FECHA_MINIMA, 23) BETWEEN fechaInicio.FECHA_INICIO and fechaInicio.FECHA_FIN
+        LEFT JOIN (
+        select sf.COD_SERIE_FECHA, sf.FECHA_INICIO, sf.FECHA_FIN
+        from SERIES_FECHAS_MAESTRO sf
+        ) fechaFin
+        on convert(varchar, fechaCliente.FECHA_MAXIMA, 23) BETWEEN fechaFin.FECHA_INICIO and fechaFin.FECHA_FIN
+    </select>
+    <select id="obtieneListadoSerieFecha"
+            resultType="com.springboot.zeus.tareas.seriesVentas.model.FechaSerie">
+        set dateformat ymd;
+        select sf.FECHA_INICIO as fechaInicio, sf.FECHA_FIN as fechaFin
+        from SERIES_FECHAS_MAESTRO sf
+        where sf.FECHA_INICIO >= #{fechaInicio, jdbcType=DATE }
+          <![CDATA[
+          and sf.FECHA_FIN <= #{fechaFin, jdbcType=DATE}
+          ]]>
+    </select>
+    <select id="obtieneVentasPorProductoPorMesDeCliente"
+            resultType="com.springboot.zeus.tareas.seriesVentas.payload.ClienteVentaMes">
+        set dateformat ymd;
+        select vh.COD_PRESENTACION codPresentacion, SUM(vh.MONTO_VENTA) montoVenta, SUM(vh.CANTIDAD_VENTA_TOTAL) cantidadVenta
+        from SERIES_VENTAS_HECHOS vh
+        where vh.COD_CLIENTE = #{codCliente}
+          and vh.FECHA_VENTA BETWEEN #{fechaInicio} and #{fechaFin}
+        group by vh.COD_AREA_EMPRESA, vh.COD_CLIENTE, vh.COD_PRESENTACION
+    </select>
+    <select id="obtieneClientesLineasVersiones"
+            resultType="java.lang.Integer">
+        select DISTINCT cv.COD_CLIENTE
+        from clientes c inner join CLIENTES_LINEASVENTA_VERSIONES cv on c.cod_cliente = cv.COD_CLIENTE
+        where cv.COD_GESTION = #{codGestion}
+          and cv.COD_MES = #{codMes}
+          and c.cod_area_empresa = #{codAreaEmpresa}
+    </select>
+    <select id="obtieneFechaMinimaFechaMaximaDeCobranzaDeCliente"
+            resultType="com.springboot.zeus.tareas.seriesVentas.model.FechaSerie">
+        select min(c.FECHA_COBRANZA) fechaInicio, max(c.FECHA_COBRANZA) fechaFin
+        from cobranzas c inner join COBRANZAS_DETALLE cd
+                                    on c.COD_COBRANZA = cd.COD_COBRANZA
+                                        and c.cod_area_empresa = cd.COD_AREA_EMPRESA
+                         inner join SALIDAS_VENTAS s
+                                    on cd.COD_SALIDAVENTA = s.COD_SALIDAVENTA
+                                        and c.cod_area_empresa = s.COD_AREA_EMPRESA
+        where s.COD_ESTADO_SALIDAVENTA != 2
+          and c.COD_ESTADO_COBRANZA != 2
+          and s.COD_CLIENTE = #{codCliente}
+    </select>
+    <select id="obtieneCobranzaPorMesDeCliente" resultType="java.lang.Double">
+        set dateformat ymd;
+        select SUM(cd.MONTO_COBRANZA)
+        from cobranzas c inner join COBRANZAS_DETALLE cd
+                                    on c.COD_COBRANZA = cd.COD_COBRANZA
+                                        and c.cod_area_empresa = cd.COD_AREA_EMPRESA
+                         inner join SALIDAS_VENTAS s
+                                    on cd.COD_SALIDAVENTA = s.COD_SALIDAVENTA
+                                        and c.cod_area_empresa = s.COD_AREA_EMPRESA
+        where s.COD_ESTADO_SALIDAVENTA != 2
+          and c.COD_ESTADO_COBRANZA != 2
+          and s.COD_CLIENTE = 1622419
+          and c.FECHA_COBRANZA BETWEEN #{fechaInicio} and #{fechaFin}
+    </select>
+
+    <select id="obtieneFechaMinimaFechaMaximaDeDescuentoFidelidadDeCliente"
+            resultType="com.springboot.zeus.tareas.seriesVentas.model.FechaSerie">
+        select min(s.FECHA_SALIDAVENTA) fechaInicio, max(s.FECHA_SALIDAVENTA) fechaFin
+        from SALIDAS_VENTAS s
+        where s.COD_ESTADO_SALIDAVENTA != 2
+        and s.COD_TIPOSALIDAVENTAS = 3
+        and s.DESCUENTO_FIDELIDAD2 > 0
+        and s.COD_CLIENTE = #{codCliente}
+    </select>
+    <select id="obtieneDescuentoFidelidadPorMesDeCliente" resultType="java.lang.Double">
+        set dateformat ymd;
+        select sum(s.DESCUENTO_FIDELIDAD2)
+        from SALIDAS_VENTAS s
+        where s.COD_ESTADO_SALIDAVENTA != 2
+        and s.COD_TIPOSALIDAVENTAS = 3
+        and s.COD_CLIENTE = #{codCliente}
+        and s.FECHA_SALIDAVENTA BETWEEN #{fechaInicio} and #{fechaFin}
+    </select>
+    <select id="obtieneListadoMesesComportamiento" resultType="java.util.Date">
+        select distinct fecha.MES
+        from (
+                 select distinct s.MES
+                 from SERIES_VENTAS_CLIENTE_PRODUCTO s
+                 where s.COD_CLIENTE = #{codCliente}
+                 union
+                 select distinct s.MES
+                 from SERIES_COBRANZAS_CLIENTE s
+                 where s.COD_CLIENTE = #{codCliente}
+                 union
+                 select distinct s.mes
+                 from SERIES_DESCUENTO_FIDELIDAD_CLIENTE s
+                 where s.COD_CLIENTE = #{codCliente}
+             ) fecha
+        order by fecha.MES
+    </select>
+    <select id="obtieneVentasClienteDelMes" resultType="java.lang.Integer">
+        set DATEFORMAT ymd;
+        select ROUND(sum(s.MONTO_VENTA), 0)
+        from SERIES_VENTAS_CLIENTE_PRODUCTO s
+        where s.COD_CLIENTE = #{codCliente}
+          and s.MES = #{fechaMes, jdbcType=DATE}
+    </select>
+    <select id="obtieneCobranzasClienteDelMes" resultType="java.lang.Integer">
+        set DATEFORMAT ymd;
+        select ROUND(sum(s.MONTO), 0)
+        from SERIES_COBRANZAS_CLIENTE s
+        where s.COD_CLIENTE = #{codCliente}
+          and s.MES = #{fechaMes, jdbcType=DATE}
+    </select>
+    <select id="obtieneDescuentoFidelidadClienteDelMes" resultType="java.lang.Integer">
+        set DATEFORMAT ymd;
+        select ROUND(sum(s.MONTO), 0)
+        from SERIES_DESCUENTO_FIDELIDAD_CLIENTE s
+        where s.COD_CLIENTE = #{codCliente}
+          and s.MES = #{fechaMes, jdbcType=DATE}
+    </select>
+</mapper>
