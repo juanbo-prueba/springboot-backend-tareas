@@ -82,7 +82,7 @@
     <select id="obtieneVentasPorProductoPorMesDeCliente"
             resultType="com.springboot.zeus.tareas.seriesVentas.payload.ClienteVentaMes">
         set dateformat ymd;
-        select vh.COD_PRESENTACION codPresentacion, SUM(vh.MONTO_VENTA) montoVenta, SUM(vh.CANTIDAD_VENTA_TOTAL) cantidadVenta
+        select vh.COD_PRESENTACION codPresentacion, (SUM(vh.MONTO_VENTA) -  SUM(vh.DESCUENTO_FIDELIDAD2)) montoVenta, SUM(vh.CANTIDAD_VENTA_TOTAL) cantidadVenta
         from SERIES_VENTAS_HECHOS vh
         where vh.COD_CLIENTE = #{codCliente}
           and vh.FECHA_VENTA BETWEEN #{fechaInicio} and #{fechaFin}

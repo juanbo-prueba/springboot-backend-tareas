@@ -17,7 +17,8 @@ public class PruebaSeriesTiempo {
 
         //seriesTiempoService.generarSerieFechaMaestro();
        //   seriesTiempoService.generaSerieVentasDeClientes();
-          seriesTiempoService.generaSerieComportamientovVentas();
+      //    seriesTiempoService.generaSerieComportamientovVentas();   //main para los tres procesos
       //    seriesTiempoService.obtieneComportamientoDeVentasPorCliente();
+        seriesTiempoService.generaSerieVentasPorMesDeCliente2(46,1624212);
     }
 }
